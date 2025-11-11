@@ -28,7 +28,7 @@ const FAQItemComponent: React.FC<FAQItemProps> = ({
         onClick={onToggle}
         className="w-full lg:py-7 py-5 text-left flex items-center justify-between hover:bg-white transition-colors duration-200"
       >
-        <h3 className="text-lg font-medium text-[#222222] pr-2.5 lg:pr-4 flex-1 leading-tight max-w-3xl xl:max-w-4xl">
+        <h3 className="text-lg font-medium text-raisinblack pr-2.5 lg:pr-4 flex-1 leading-tight max-w-3xl xl:max-w-4xl">
           {index}{"."} {question}
         </h3>
         <div className="flex-shrink-0">
@@ -50,7 +50,7 @@ const FAQItemComponent: React.FC<FAQItemProps> = ({
 
       {isOpen && (
         <div className="pb-6 pr-12 lg:pr-20">
-          <p className="text-[#222222] text-base leading-relaxed">{answer}</p>
+          <p className="text-raisinblack text-base leading-relaxed">{answer}</p>
         </div>
       )}
     </div>

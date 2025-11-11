@@ -30,6 +30,8 @@ import { BannerGV } from '../../blocks/BannerGV/config'
 import { BannerContact } from '../../blocks/BannerContact/config'
 import { ContactFormSec } from '../../blocks/ContactFormSec/config'
 import { ContactInfo } from '../../blocks/ContactInfo/config'
+import { TncHeader } from '../../blocks/TncHeader/config'
+import { TncContent } from '../../blocks/TncContent/config'
 import { hero } from '@/heros/config'
 import { slugField } from 'payload'
 import { populatePublishedAt } from '../../hooks/populatePublishedAt'
@@ -95,7 +97,7 @@ export const Pages: CollectionConfig<'pages'> = {
             {
               name: 'layout',
               type: 'blocks',
-              blocks: [BannerHome, BannerAbout, BannerContact, BannerTeams, TeamSection, AboutSection, ManagedCapital, OurVision, ValuesSection, ExpertiseSec, InvestmentMeets, ApproachSec, StrategicFocus, WeCreate, WaveGroup, CtaSection, CallToAction, Content, MediaBlock, Archive, FormBlock, PeopleWho, PortfolioSec, Faq, VentureBlocks, BannerGV, ContactFormSec, ContactInfo],
+              blocks: [BannerHome, BannerAbout, BannerContact, BannerTeams, TeamSection, AboutSection, ManagedCapital, OurVision, ValuesSection, ExpertiseSec, InvestmentMeets, ApproachSec, StrategicFocus, WeCreate, WaveGroup, CtaSection, CallToAction, Content, MediaBlock, Archive, FormBlock, PeopleWho, PortfolioSec, Faq, VentureBlocks, BannerGV, ContactFormSec, ContactInfo, TncHeader, TncContent],
               required: true,
               admin: {
                 initCollapsed: true,

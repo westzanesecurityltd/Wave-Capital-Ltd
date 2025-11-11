@@ -90,7 +90,7 @@ export default function ValuesSection(props: ValuesSectionProps) {
           {cards.map((card, index) => (
             <Card
               key={index} // use a unique id in production
-              className="flex flex-col h-full shadow-none hover:shadow-primarys/10 hover:shadow-lg transition-shadow bg-[#EFF5FB] border-[#1B4277]/50 rounded-xl p-4 md:p-5 lg:p-7 col-span-12 md:col-span-6 lg:col-span-4"
+              className="flex flex-col h-full shadow-none hover:shadow-primarys/10 hover:shadow-lg transition-shadow bg-[#EFF5FB] border-primarys/50 rounded-xl p-4 md:p-5 lg:p-7 col-span-12 md:col-span-6 lg:col-span-4"
             >
               {card.iconType && (
                 <div className="text-primarys mb-4 min-h-[1.75rem]">

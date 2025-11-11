@@ -35,7 +35,7 @@ export const BannerContact: React.FC<BannerContactProps> = ({
       <div className="container mx-auto relative z-10">
         {/* Text Content */}
         <div className="flex flex-col items-center justify-center text-center min-h-[220px]">
-          <div className="max-w-5xl py-5 xl:py-10">
+          <div className="max-w-7xl py-5 xl:py-10">
             {eyebrowtext && (
               <p className="text-base text-white mb-3">{eyebrowtext}</p>
             )}

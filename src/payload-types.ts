@@ -220,6 +220,8 @@ export interface Page {
     | BannerGVBlock
     | ContactFormSec
     | ContactInfoBlock
+    | TncHeaderBlock
+    | TncContentBlock
   )[];
   meta?: {
     title?: string | null;
@@ -1195,6 +1197,54 @@ export interface ContactInfoBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "TncHeaderBlock".
+ */
+export interface TncHeaderBlock {
+  eyebrow?: string | null;
+  title: string;
+  updatedate?: string | null;
+  secdesc?:
+    | {
+        description: string;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'tncHeader';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "TncContentBlock".
+ */
+export interface TncContentBlock {
+  contentItems?:
+    | {
+        title: string;
+        description: {
+          root: {
+            type: string;
+            children: {
+              type: any;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+          };
+          [k: string]: unknown;
+        };
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'tncContent';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "redirects".
  */
 export interface Redirect {
@@ -1507,6 +1557,8 @@ export interface PagesSelect<T extends boolean = true> {
         bannerGV?: T | BannerGVBlockSelect<T>;
         contactFormSec?: T | ContactFormSecSelect<T>;
         contactInfo?: T | ContactInfoBlockSelect<T>;
+        tncHeader?: T | TncHeaderBlockSelect<T>;
+        tncContent?: T | TncContentBlockSelect<T>;
       };
   meta?:
     | T
@@ -2005,6 +2057,38 @@ export interface ContactInfoBlockSelect<T extends boolean = true> {
   btntext?: T;
   btnurl?: T;
   imageUpload?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "TncHeaderBlock_select".
+ */
+export interface TncHeaderBlockSelect<T extends boolean = true> {
+  eyebrow?: T;
+  title?: T;
+  updatedate?: T;
+  secdesc?:
+    | T
+    | {
+        description?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "TncContentBlock_select".
+ */
+export interface TncContentBlockSelect<T extends boolean = true> {
+  contentItems?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        id?: T;
+      };
   id?: T;
   blockName?: T;
 }
