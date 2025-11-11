@@ -102,7 +102,7 @@ export async function Footer() {
                     </li>
                   ))}
                 </ul>
-              {col.title == 'Social Links' && 
+              {col.title == 'Social Media' && 
                 <div className="flex items-center gap-5">
               {footerData?.facebook &&
               <Link href={footerData?.facebook} className="mb-4 md:mb-0">

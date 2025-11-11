@@ -61,7 +61,7 @@ export const ExpertiseSec = (props: Partial<ExpertiseData>) => {
                 </Typography>
               )}              
             </div>
-            <div className="bg-aliceblue p-8 rounded-2xl mt-auto">
+            <div className="bg-aliceblue md:px-8 md:py-10 p-5 rounded-2xl mt-auto">
                 <ul>
                   {bullets.map((item, index) => (
                     <li
@@ -94,14 +94,14 @@ export const ExpertiseSec = (props: Partial<ExpertiseData>) => {
           </div>
 
           {/* Foreground Image */}
-          <div className="col-span-12 lg:col-span-6 order-1 lg:order-2">
+          <div className="col-span-12 h-full lg:col-span-6 order-1 lg:order-2">
             <Image
               src={imageUrl as string}
               alt={title + " Image"}
               width={551}
               height={564}
               priority
-              className="w-full h-auto max-w-[450px] lg:max-w-[640px] object-cover rounded-2xl"
+              className="w-full h-[560px] max-h-full max-w-[450px] lg:max-w-[640px] object-cover rounded-2xl"
             />
           </div>
         </div>
