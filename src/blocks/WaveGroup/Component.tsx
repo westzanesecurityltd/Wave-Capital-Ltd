@@ -93,7 +93,7 @@ export default function WaveGroup(props: WaveGroupProps) {
           {cards.map((card, index) => (
             <Card
               key={index} // use a unique id in production
-              className="flex flex-col h-full shadow-none hover:shadow-primarys/10 hover:shadow-lg transition-shadow bg-[#EFF7FF] border-[#1B4277]/50 rounded-xl p-4 md:p-5 lg:p-6 col-span-12 lg:col-span-6"
+              className="flex flex-col h-full shadow-none hover:shadow-primarys/10 hover:shadow-lg transition-shadow bg-[#EFF7FF] border-primarys/50 rounded-xl p-4 md:p-5 lg:p-6 col-span-12 lg:col-span-6"
             >
               <div className="flex items-center justify-center mb-4 min-h-[180px]">
                 <div style={{ maxWidth: card.imgWidth, maxHeight: card.imgHeight }} className="w-full h-full flex items-center justify-center">

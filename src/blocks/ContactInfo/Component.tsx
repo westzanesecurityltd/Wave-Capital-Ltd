@@ -78,7 +78,7 @@ function ContactInfo(props: ContactInfoProps) {
               </Typography>
               <Typography
                 variant="p"
-                className="text-[#666666] text-base lg:text-lg leading-snug mt-5 lg:mt-6"
+                className="text-midgray text-base lg:text-lg leading-snug mt-5 lg:mt-6"
               >
                 {data.blockdesc}
               </Typography>

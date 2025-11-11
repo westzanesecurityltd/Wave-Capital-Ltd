@@ -110,7 +110,7 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
           <HeaderNav data={data} />
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden p-2 text-[#1B4277] transition-colors bg-white rounded-[8px] h-[42px] w-[42px] flex items-center justify-center relative top-[7px]"
+            className="md:hidden p-2 text-primarys transition-colors bg-white rounded-[8px] h-[42px] w-[42px] flex items-center justify-center relative top-[7px]"
           >
             {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>

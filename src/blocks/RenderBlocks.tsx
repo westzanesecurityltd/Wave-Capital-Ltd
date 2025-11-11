@@ -30,6 +30,8 @@ import { BannerGV } from '@/blocks/BannerGV/Component'
 import { BannerContact } from '@/blocks/BannerContact/Component'
 import ContactFormSec from '@/blocks/ContactFormSec/Component'
 import ContactInfo from '@/blocks/ContactInfo/Component'
+import { TncHeader } from '@/blocks/TncHeader/Component'
+import { TncContent } from '@/blocks/TncContent/Component'
 
 const blockComponents = {
   archive: ArchiveBlock,
@@ -60,6 +62,8 @@ const blockComponents = {
   bannerContact: BannerContact,
   contactFormSec: ContactFormSec,
   contactInfo: ContactInfo,
+  tncHeader: TncHeader,
+  tncContent: TncContent,
 }
 
 export const RenderBlocks: React.FC<{
