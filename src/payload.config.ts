@@ -16,6 +16,7 @@ import { Header } from './Header/config'
 import { plugins } from './plugins'
 import { defaultLexical } from '@/fields/defaultLexical'
 import { getServerSideURL } from './utilities/getURL'
+import { nodemailerAdapter } from '@payloadcms/email-nodemailer'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -95,4 +96,25 @@ export default buildConfig({
     },
     tasks: [],
   },
+  email: nodemailerAdapter({
+    defaultFromAddress: process.env.SMTP_FROM_EMAIL || '',
+    defaultFromName: process.env.SMTP_FROM_NAME || '',
+    transportOptions:
+      process.env.SMTP_USER && process.env.SMTP_PASS
+        ? {
+            host: process.env.SMTP_HOST || '',
+            port: process.env.SMTP_PORT || '',
+            secure: process.env.SMTP_SECURE === 'true', // true for 465, false for other ports
+            auth: {
+              user: process.env.SMTP_USER,
+              pass: process.env.SMTP_PASS,
+            },
+            logger: false,
+            debug: false,
+            tls: {
+              rejectUnauthorized: false, // for local testing only
+            },
+          }
+        : undefined,
+  }),
 })
