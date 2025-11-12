@@ -1,12 +1,17 @@
 import React, { ReactNode } from "react";
 import Image from "next/image";
 import { Typography } from "@/components/common/Typography";
-import { Snowflake, BarChart3, Shield } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import type { Media } from "@/payload-types";
 import { getMediaUrl } from "@/utilities/getMediaUrl";
 import { ButtonPrimary } from "@/components/common/ButtonPrimary";
+import CreateValueIcon1 from "@/components/Icons/CreateValueIcon1";
+import CreateValueIcon2 from "@/components/Icons/CreateValueIcon2";
+import CreateValueIcon3 from "@/components/Icons/CreateValueIcon3";
+import CreateValueIcon4 from "@/components/Icons/CreateValueIcon4";
+import CreateValueIcon5 from "@/components/Icons/CreateValueIcon5";
+import CreateValueIcon6 from "@/components/Icons/CreateValueIcon6";
 
 function IconCircle({
   children,
@@ -18,7 +23,7 @@ function IconCircle({
   return (
     <span
       className={cn(
-        "inline-flex items-center justify-center w-[3.125rem] lg:w-[3.75rem] aspect-square rounded-full bg-white lg:bg-primarys",
+        "inline-flex items-center justify-center w-[3.125rem] lg:w-[3.75rem] aspect-square rounded-full bg-white lg:bg-white",
         className
       )}
     >
@@ -38,32 +43,33 @@ const CARD_DATA: CardData[] = [
     title: "Strategic Focus",
     desc: "We manage investment with clarity and discipline, focusing on markets and sectors where sustainable growth and long-term value align.",
     imgSrc: "/images/strategic-focus-img-1.png",
-    icon: <Snowflake className="w-10 h-10" />,
+    icon: <CreateValueIcon1 className="w-10 h-10" />,
   },
   {
     title: "Markets",
     desc: "We work with institutional investors, development finance bodies, and local operators who share our long-term vision. Every partnership is shaped",
     imgSrc: "/images/strategic-focus-img-1.png",
-    icon: <Snowflake className="w-10 h-10" />,
+    icon: <CreateValueIcon2 className="w-10 h-10" />,
   },
   {
     title: "Governance",
     desc: "Governance defines every investment vehicle we manage. Our frameworks ensure financial integrity, operational discipline, and transparency that protect investors’ confidence while reinforcing stable returns across diverse and evolving markets.",
     imgSrc: "/images/strategic-focus-img-1.png",
-    icon: (
-      <svg
-        className="w-10 h-10"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-        width={48}
-        height={48}
-        viewBox="0 0 48 48"
-      >
-        <rect x="10" y="24" width="6" height="12" rx="2" fill="currentColor" />
-        <rect x="20" y="18" width="6" height="18" rx="2" fill="currentColor" />
-        <rect x="30" y="10" width="6" height="26" rx="2" fill="currentColor" />
-      </svg>
-    ),
+    // icon: (
+    //   <svg
+    //     className="w-10 h-10"
+    //     fill="none"
+    //     xmlns="http://www.w3.org/2000/svg"
+    //     width={48}
+    //     height={48}
+    //     viewBox="0 0 48 48"
+    //   >
+    //     <rect x="10" y="24" width="6" height="12" rx="2" fill="currentColor" />
+    //     <rect x="20" y="18" width="6" height="18" rx="2" fill="currentColor" />
+    //     <rect x="30" y="10" width="6" height="26" rx="2" fill="currentColor" />
+    //   </svg>
+    // ),
+    icon: <CreateValueIcon3 className="w-10 h-10" />,
   },
 ];
 const SECTION_DATA: { title: string; secdesc: string } = {
@@ -75,7 +81,7 @@ type CMSCard = {
   title?: string;
   desc?: string;
   imageUpload?: Media | number | null;
-  iconType?: "snowflake" | "barchart" | "shield";
+  iconType?: "CreateValueIcon1" | "CreateValueIcon2" | "CreateValueIcon3" | "CreateValueIcon4" | "CreateValueIcon5" | "CreateValueIcon6";
 };
 
 type WeCreateProps = {
@@ -97,14 +103,20 @@ export default function WeCreate(props: WeCreateProps) {
     fallbackIcon?: ReactNode
   ) => {
     switch (iconType) {
-      case "barchart":
-        return <BarChart3 className="w-10 h-10" />;
-      case "shield":
-        return <Shield className="w-10 h-10" />;
-      case "snowflake":
-        return <Snowflake className="w-10 h-10" />;
+      case "CreateValueIcon1":
+        return <CreateValueIcon1 className="w-6 h-6 md:w-8 md:h-8" />;
+      case "CreateValueIcon2":
+        return <CreateValueIcon2 className="w-6 h-6 md:w-8 md:h-8" />;
+      case "CreateValueIcon3":
+        return <CreateValueIcon3 className="w-6 h-6 md:w-8 md:h-8" />;
+      case "CreateValueIcon4":
+        return <CreateValueIcon4 className="w-6 h-6 md:w-8 md:h-8" />;
+      case "CreateValueIcon5":
+        return <CreateValueIcon5 className="w-6 h-6 md:w-8 md:h-8" />;
+      case "CreateValueIcon6":
+        return <CreateValueIcon6 className="w-6 h-6 md:w-8 md:h-8" />;
       default:
-        return fallbackIcon ?? <Snowflake className="w-10 h-10" />;
+        return fallbackIcon ?? <CreateValueIcon1 className="w-6 h-6" />;
     }
   };
 

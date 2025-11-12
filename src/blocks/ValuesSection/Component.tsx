@@ -2,6 +2,9 @@ import React, { ReactNode } from "react";
 import { Typography } from "@/components/common/Typography";
 import { Shield, Snowflake, Users, Building2, Factory, TrendingUp } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import ValuesSecIcon1 from "@/components/Icons/ValuesSecIcon1";
+import ValuesSecIcon2 from "@/components/Icons/ValuesSecIcon2";
+import ValuesSecIcon3 from "@/components/Icons/ValuesSecIcon3";
 
 type IconType = 'shield' | 'users' | 'snowflake' | 'building' | 'factory' | 'trendingUp'
 
@@ -53,11 +56,11 @@ export default function ValuesSection(props: ValuesSectionProps) {
   const renderIcon = (iconType?: IconType, fallback?: ReactNode) => {
     switch (iconType) {
       case 'shield':
-        return <Shield className="w-10 h-10" />
+        return <ValuesSecIcon1 className="w-10 h-10" />
       case 'users':
-        return <Users className="w-10 h-10" />
+        return <ValuesSecIcon2 className="w-10 h-10" />
       case 'snowflake':
-        return <Snowflake className="w-10 h-10" />
+        return <ValuesSecIcon3 className="w-10 h-10" />
       case 'building':
         return <Building2 className="w-10 h-10" />
       case 'factory':
@@ -93,7 +96,7 @@ export default function ValuesSection(props: ValuesSectionProps) {
               className="flex flex-col h-full shadow-none hover:shadow-primarys/10 hover:shadow-lg transition-shadow bg-[#EFF5FB] border-primarys/50 rounded-xl p-4 md:p-5 lg:p-7 col-span-12 md:col-span-6 lg:col-span-4"
             >
               {card.iconType && (
-                <div className="text-primarys mb-4 min-h-[1.75rem]">
+                <div className="text-primarys md:mb-8 lg:mb-12 mb-6 min-h-[1.75rem]">
                   {renderIcon(card.iconType, card.icon)}
                 </div>
               )}
@@ -104,7 +107,7 @@ export default function ValuesSection(props: ValuesSectionProps) {
                 </CardTitle>
               </CardHeader>
 
-              <CardContent className="flex-1 p-0">
+              <CardContent className="flex-1 p-0 mb-0 lg:mb-4">
                 <Typography
                   variant="p"
                   className="text-sm text-darkgray leading-snug"
