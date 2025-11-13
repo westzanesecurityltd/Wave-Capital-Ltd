@@ -14,6 +14,11 @@ import {
 import { cn } from "@/lib/utils";
 import type { Media } from "@/payload-types";
 import { getMediaUrl } from "@/utilities/getMediaUrl";
+import PortfolioIcon1 from "@/components/Icons/PortfolioIcon1";
+import PortfolioIcon2 from "@/components/Icons/PortfolioIcon2";
+import PortfolioIcon3 from "@/components/Icons/PortfolioIcon3";
+import PortfolioIcon4 from "@/components/Icons/PortfolioIcon4";
+import PortfolioIcon5 from "@/components/Icons/PortfolioIcon5";
 
 // Local type definition (will be replaced by generated PortfolioSecBlock type after Payload regenerates types)
 type PortfolioSecBlock = {
@@ -64,15 +69,15 @@ const SEC_DATA = {
 const renderIcon = (iconType?: string | null) => {
   switch (iconType) {
     case "lightbulb":
-      return <Lightbulb className="w-7 h-7 lg:w-8 lg:h-8" />;
+      return <PortfolioIcon1 className="w-7 h-7 lg:w-8 lg:h-8" />;
     case "building":
-      return <Building className="w-7 h-7 lg:w-8 lg:h-8" />;
+      return <PortfolioIcon2 className="w-7 h-7 lg:w-8 lg:h-8" />;
     case "building2":
-      return <Building2 className="w-7 h-7 lg:w-8 lg:h-8" />;
+      return <PortfolioIcon3 className="w-7 h-7 lg:w-8 lg:h-8" />;
     case "factory":
-      return <Factory className="w-7 h-7 lg:w-8 lg:h-8" />;
+      return <PortfolioIcon4 className="w-7 h-7 lg:w-8 lg:h-8" />;
     case "flaskConical":
-      return <FlaskConical className="w-7 h-7 lg:w-8 lg:h-8" />;
+      return <PortfolioIcon5 className="w-7 h-7 lg:w-8 lg:h-8" />;
     case "zap":
       return <Zap className="w-7 h-7 lg:w-8 lg:h-8" />;
     case "trendingUp":

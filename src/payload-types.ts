@@ -654,7 +654,7 @@ export interface StrategicFocusBlock {
     | {
         title: string;
         desc: string;
-        iconType?: ('snowflake' | 'barchart' | 'shield') | null;
+        iconType?: ('StratagicSecIcon1' | 'StratagicSecIcon2' | 'StratagicSecIcon3') | null;
         showImage?: boolean | null;
         imageUpload?: (number | null) | Media;
         id?: string | null;
@@ -678,7 +678,16 @@ export interface WeCreateBlock {
         title: string;
         desc: string;
         imageUpload?: (number | null) | Media;
-        iconType?: ('snowflake' | 'barchart' | 'shield') | null;
+        iconType?:
+          | (
+              | 'CreateValueIcon1'
+              | 'CreateValueIcon2'
+              | 'CreateValueIcon3'
+              | 'CreateValueIcon4'
+              | 'CreateValueIcon5'
+              | 'CreateValueIcon6'
+            )
+          | null;
         id?: string | null;
       }[]
     | null;

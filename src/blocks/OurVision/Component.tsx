@@ -5,6 +5,8 @@ import { cn } from "@/lib/utils";
 import { BarChart3, Snowflake, Building2, Factory, TrendingUp, Users } from "lucide-react";
 import { ReactNode } from "react";
 import type { Media } from '@/payload-types'
+import OurVisionIcon1 from "@/components/Icons/OurVisionIcon1";
+import OurVisionIcon2 from "@/components/Icons/OurVisionIcon2";
 
 function IconCircle({
   children,
@@ -41,14 +43,14 @@ interface BannerAbout {
 
 const DEFAULT_SECTIONS: SectionItem[] = [
   {
-    icon: <Snowflake className="lg:w-8 lg:h-8 w-7 h-7" />,
+    icon: <OurVisionIcon1 className="lg:w-8 lg:h-8 w-7 h-7" />,
     iconType: 'snowflake',
     title: "",
     secdesc:
       "",
   },
   {
-    icon: <BarChart3 className="lg:w-8 lg:h-8 w-7 h-7" />,
+    icon: <OurVisionIcon2 className="lg:w-8 lg:h-8 w-7 h-7" />,
     iconType: 'barChart',
     title: "",
     secdesc:
@@ -71,9 +73,9 @@ export const OurVision = (props: OurVisionProps) => {
   const renderIcon = (iconType?: IconType, fallback?: ReactNode) => {
     switch (iconType) {
       case 'snowflake':
-        return <Snowflake className="lg:w-8 lg:h-8 w-7 h-7" />
+        return <OurVisionIcon1 className="lg:w-7 lg:h-7 w-7 h-7" />
       case 'barChart':
-        return <BarChart3 className="lg:w-8 lg:h-8 w-7 h-7" />
+        return <OurVisionIcon2 className="lg:w-9 lg:h-9 w-7 h-7" />
       case 'building':
         return <Building2 className="lg:w-8 lg:h-8 w-7 h-7" />
       case 'factory':

@@ -1,10 +1,12 @@
 import React, { ReactNode } from "react";
 import Image from "next/image";
 import { Typography } from "@/components/common/Typography";
-import { Snowflake, BarChart3, Shield } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
-import type { Media } from '@/payload-types'
+import type { Media } from "@/payload-types";
+import StratagicSecIcon1 from "@/components/Icons/StratagicSecIcon1";
+import StratagicSecIcon2 from "@/components/Icons/StratagicSecIcon2";
+import StratagicSecIcon3 from "@/components/Icons/StratagicSecIcon3";
 
 function IconCircle({
   children,
@@ -28,6 +30,7 @@ function IconCircle({
 type ImageProp = boolean | string;
 
 interface CardData {
+  id?: string; // Unique identifier for React keys
   title: string;
   desc: string;
   image?: ImageProp; // Optional, can be boolean or URL string
@@ -41,34 +44,35 @@ const CARD_DATA: CardData[] = [
     desc: "We manage investment with clarity and discipline, focusing on markets and sectors where sustainable growth and long-term value align.",
     image: false,
     imgSrc: "/images/strategic-focus-img-1.png",
-    icon: <Snowflake className="w-10 h-10 text-white" />,
+    icon: <StratagicSecIcon1 className="w-10 h-10 text-white" />,
   },
   {
     title: "Markets",
     desc: "We work with institutional investors, development finance bodies, and local operators who share our long-term vision. Every partnership is shaped",
     image: false,
     imgSrc: "/images/strategic-focus-img-1.png",
-    icon: <Snowflake className="w-10 h-10 text-white" />,
+    icon: <StratagicSecIcon2 className="w-10 h-10 text-white" />,
   },
   {
     title: "Governance",
     desc: "Governance defines every investment vehicle we manage. Our frameworks ensure financial integrity, operational discipline, and transparency that protect investors’ confidence while reinforcing stable returns across diverse and evolving markets.",
     image: true,
     imgSrc: "/images/strategic-focus-img-1.png",
-    icon: (
-      <svg
-        className="w-10 h-10 text-white"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-        width={48}
-        height={48}
-        viewBox="0 0 48 48"
-      >
-        <rect x="10" y="24" width="6" height="12" rx="2" fill="currentColor" />
-        <rect x="20" y="18" width="6" height="18" rx="2" fill="currentColor" />
-        <rect x="30" y="10" width="6" height="26" rx="2" fill="currentColor" />
-      </svg>
-    ),
+    // icon: (
+    //   <svg
+    //     className="w-10 h-10 text-white"
+    //     fill="none"
+    //     xmlns="http://www.w3.org/2000/svg"
+    //     width={48}
+    //     height={48}
+    //     viewBox="0 0 48 48"
+    //   >
+    //     <rect x="10" y="24" width="6" height="12" rx="2" fill="currentColor" />
+    //     <rect x="20" y="18" width="6" height="18" rx="2" fill="currentColor" />
+    //     <rect x="30" y="10" width="6" height="26" rx="2" fill="currentColor" />
+    //   </svg>
+    // ),
+    icon: <StratagicSecIcon3 className="w-10 h-10 text-white" />,
   },
 ];
 const SECTION_DATA: { title: string; secdesc: string } = {
@@ -78,53 +82,78 @@ const SECTION_DATA: { title: string; secdesc: string } = {
 };
 
 type CMSCard = {
-  title?: string
-  desc?: string
-  showImage?: boolean
-  imageUpload?: Media | number | null
-  iconType?: 'snowflake' | 'barchart' | 'shield'
-}
+  id?: string | null;
+  title?: string;
+  desc?: string;
+  showImage?: boolean;
+  imageUpload?: Media | number | null;
+  iconType?: "StratagicSecIcon1" | "StratagicSecIcon2" | "StratagicSecIcon3";
+};
 
 type StrategicFocusProps = {
-  sectitle?: string
-  secdesc?: string
-  cards?: CMSCard[]
-}
+  sectitle?: string;
+  secdesc?: string;
+  cards?: CMSCard[];
+};
 
 export default function StrategicFocus(props: StrategicFocusProps) {
-  const sectionTitle = props.sectitle ?? SECTION_DATA.title
-  const sectionDesc = props.secdesc ?? SECTION_DATA.secdesc
+  const sectionTitle = props.sectitle ?? SECTION_DATA.title;
+  const sectionDesc = props.secdesc ?? SECTION_DATA.secdesc;
 
-  const renderIcon = (iconType?: CMSCard['iconType'], fallbackIcon?: ReactNode) => {
+  const renderIcon = (
+    iconType?: CMSCard["iconType"],
+    fallbackIcon?: ReactNode
+  ) => {
     switch (iconType) {
-      case 'barchart':
-        return <BarChart3 className="w-10 h-10 text-white" />
-      case 'shield':
-        return <Shield className="w-10 h-10 text-white" />
-      case 'snowflake':
-        return <Snowflake className="w-10 h-10 text-white" />
+      case "StratagicSecIcon1":
+        return (
+          <StratagicSecIcon1 className="w-6 h-6 md:w-8 md:h-8 text-white" />
+        );
+      case "StratagicSecIcon2":
+        return (
+          <StratagicSecIcon2 className="w-6 h-6 md:w-8 md:h-8 text-white" />
+        );
+      case "StratagicSecIcon3":
+        return (
+          <StratagicSecIcon3 className="w-6 h-6 md:w-8 md:h-8 text-white" />
+        );
       default:
-        return fallbackIcon ?? <Snowflake className="w-10 h-10 text-white" />
+        return (
+          fallbackIcon ?? (
+            <StratagicSecIcon1 className="w-6 h-6 md:w-8 md:h-8 text-white" />
+          )
+        );
     }
-  }
+  };
 
-  const cards: CardData[] = (props.cards && props.cards.length > 0)
-    ? props.cards.slice(0, 3).map((c, idx) => {
-        const uploaded = c.imageUpload && typeof c.imageUpload === 'object' ? c.imageUpload : null
-        const imgUrl = uploaded && 'url' in uploaded && uploaded.url ? uploaded.url : CARD_DATA[idx]?.imgSrc
-        return {
-          title: c.title ?? CARD_DATA[idx]?.title ?? '',
-          desc: c.desc ?? CARD_DATA[idx]?.desc ?? '',
-        // Only allow image on the 3rd item (index 2)
-        image: Boolean(idx === 2 && c.showImage && imgUrl),
-          imgSrc: imgUrl ?? CARD_DATA[idx]?.imgSrc,
-        icon: renderIcon(c.iconType, CARD_DATA[idx]?.icon),
-        }
-      })
-    : CARD_DATA
+  const cards: CardData[] =
+    props.cards && props.cards.length > 0
+      ? props.cards.slice(0, 3).map((c, idx) => {
+          const uploaded =
+            c.imageUpload && typeof c.imageUpload === "object"
+              ? c.imageUpload
+              : null;
+          const imgUrl =
+            uploaded && "url" in uploaded && uploaded.url
+              ? uploaded.url
+              : CARD_DATA[idx]?.imgSrc;
+          return {
+            id: c.id ?? `card-${idx}`, // Use CMS id or fallback to unique key
+            title: c.title ?? CARD_DATA[idx]?.title ?? "",
+            desc: c.desc ?? CARD_DATA[idx]?.desc ?? "",
+            // Only allow image on the 3rd item (index 2)
+            image: Boolean(idx === 2 && c.showImage && imgUrl),
+            imgSrc: imgUrl ?? CARD_DATA[idx]?.imgSrc,
+            icon: renderIcon(c.iconType, CARD_DATA[idx]?.icon),
+          };
+        })
+      : CARD_DATA.map((card, idx) => ({
+          ...card,
+          id: `default-card-${idx}`, // Add unique id for default cards
+        }));
 
   return (
-    <section className="relative py-12 lg:py-20 bg-aliceblue">
+    <section className="strategic-focus-section relative py-12 lg:py-20 bg-aliceblue">
       <div className="container">
         <div className="text-center max-w-4xl mx-auto mb-8 lg:mb-12">
           <Typography variant="h2" as={"h2"} className="font-playfair">
@@ -142,9 +171,9 @@ export default function StrategicFocus(props: StrategicFocusProps) {
         <div className="grid grid-cols-12 gap-5 lg:gap-8">
           {/* Left column cards */}
           <div className="col-span-12 lg:col-span-6 grid grid-cols-1 gap-5 lg:gap-8">
-            {cards.slice(0, 2).map((card, index) => (
+            {cards.slice(0, 2).map((card) => (
               <Card
-                key={index} // use a unique id in production
+                key={card.id || `left-card-${card.title}`}
                 className="flex flex-col h-full shadow-none hover:shadow-primarys/10 hover:shadow-lg transition-shadow bg-white border-0 rounded-xl p-4 md:p-5 lg:p-6 col-span-6"
                 title={card.title}
               >
@@ -181,9 +210,9 @@ export default function StrategicFocus(props: StrategicFocusProps) {
 
           {/* Right column image + card */}
           <div className="col-span-12 lg:col-span-6">
-            {cards.slice(2, 3).map((card, index) => (
+            {cards.slice(2, 3).map((card) => (
               <Card
-                key={index} // use a unique id in production
+                key={card.id || `right-card-${card.title}`}
                 className="flex flex-col h-full shadow-none hover:shadow-primarys/10 hover:shadow-lg transition-shadow bg-white border-0 rounded-xl p-4 lg:p-6 col-span-6"
                 title={card.title}
               >

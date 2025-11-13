@@ -46,13 +46,21 @@ export const StrategicFocus: Block = {
         },
         {
           name: 'iconType',
-          label: 'Icon',
+          label: 'Icon Type',
           type: 'select',
-          defaultValue: 'snowflake',
           options: [
-            { label: 'Snowflake', value: 'snowflake' },
-            { label: 'Bar Chart', value: 'barchart' },
-            { label: 'Shield', value: 'shield' },
+            {
+              label: 'StratagicSec Icon1',
+              value: 'StratagicSecIcon1',
+            },
+            {
+              label: 'StratagicSec Icon2',   
+              value: 'StratagicSecIcon2',
+            },
+            {
+              label: 'StratagicSec Icon3',
+              value: 'StratagicSecIcon3',
+            },
           ],
         },
         {
