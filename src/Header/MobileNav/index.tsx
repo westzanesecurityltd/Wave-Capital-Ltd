@@ -4,7 +4,8 @@ import { CMSLink } from '@/components/Link'
 import type { Header as HeaderType } from '@/payload-types'
 import { cn } from '@/utilities/ui'
 import { Minus, Plus } from 'lucide-react'
-import React, { useState } from 'react'
+import { usePathname } from 'next/navigation'
+import React, { useState, useEffect, useRef } from 'react'
 
 type Props = {
   data: HeaderType
@@ -16,6 +17,26 @@ type Props = {
 export const MobileNav: React.FC<Props> = ({ className, data, onItemClick }) => {
   const navItems = data?.navItems || []
   const [expandedMobileMenu, setExpandedMobileMenu] = useState<string | null>(null)
+  const pathname = usePathname()
+  const clickedRef = useRef(false)
+  const previousPathnameRef = useRef(pathname)
+
+  // Scroll to top when pathname changes after clicking a mobile nav link
+  useEffect(() => {
+    if (clickedRef.current && pathname !== previousPathnameRef.current) {
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+      clickedRef.current = false
+    }
+    previousPathnameRef.current = pathname
+  }, [pathname])
+
+  const handleLinkClick = () => {
+    clickedRef.current = true
+    if (onItemClick) {
+      onItemClick()
+    }
+  }
+
   const toggleMobileSubmenu = (menuTitle: string) => {
     setExpandedMobileMenu(expandedMobileMenu === menuTitle ? null : menuTitle)
   }
@@ -31,7 +52,7 @@ export const MobileNav: React.FC<Props> = ({ className, data, onItemClick }) => 
         return (
           <div key={i} className={cn(!isCTA ? 'border-b border-gray-200' : '', 'relative group ')}>
             <div className="flex items-center gap-2 justify-between relative">
-              <div onClick={onItemClick} className="w-full">
+              <div onClick={handleLinkClick} className="w-full">
                 <CMSLink
                   {...item.link}
                   appearance={isCTA ? 'default' : 'link'}
@@ -79,7 +100,7 @@ export const MobileNav: React.FC<Props> = ({ className, data, onItemClick }) => 
               >
                 <div className="pl-4 pb-4">
                   {item.subLinks?.map((child, j) => (
-                    <div key={j} onClick={onItemClick}>
+                    <div key={j} onClick={handleLinkClick}>
                       <CMSLink
                         {...child.link}
                         className="block text-sm text-black hover:text-primarys transition-colors !no-underline py-2 px-0 "

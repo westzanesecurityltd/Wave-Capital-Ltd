@@ -705,7 +705,12 @@ export interface WaveGroupBlock {
   cards?:
     | {
         title: string;
-        desc: string;
+        desc?:
+          | {
+              paragraph: string;
+              id?: string | null;
+            }[]
+          | null;
         imageUpload?: (number | null) | Media;
         imgWidth?: number | null;
         imgHeight?: number | null;
@@ -1838,7 +1843,12 @@ export interface WaveGroupBlockSelect<T extends boolean = true> {
     | T
     | {
         title?: T;
-        desc?: T;
+        desc?:
+          | T
+          | {
+              paragraph?: T;
+              id?: T;
+            };
         imageUpload?: T;
         imgWidth?: T;
         imgHeight?: T;
