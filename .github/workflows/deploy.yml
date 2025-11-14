@@ -1,0 +1,51 @@
+name: Deploy to Staging Server
+
+on:
+  push:
+    branches:
+      - staging   # Trigger on push to staging branch
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    env:
+      PROJECT_PATH: "/root/projects/Wave-Capital-Ltd" 
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Install sshpass
+        run: sudo apt-get install -y sshpass
+
+      - name: Deploy to Staging via SSH
+        env:
+          SERVER_IP: ${{ secrets.SERVER_IP }}
+          SERVER_USER: ${{ secrets.SERVER_USER }}
+          SERVER_PASS: ${{ secrets.SERVER_PASS }}
+        run: |
+          set -e  # Fail immediately on any error
+
+          echo "Connecting & deploying to server $SERVER_IP..."
+
+          sshpass -p "$SERVER_PASS" ssh -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP "
+            set -e
+
+            echo '--- Connected to Server ---'
+
+            cd $PROJECT_PATH
+
+            echo '--- Pulling latest staging branch ---'
+            git fetch
+            git reset --hard origin/staging
+            git pull origin staging
+
+            echo '--- Building Docker Compose ---'
+            docker compose build
+
+            echo '--- Starting containers (detached) ---'
+            docker compose up -d
+
+            echo '--- Deployment Successful! ---'
+          "
