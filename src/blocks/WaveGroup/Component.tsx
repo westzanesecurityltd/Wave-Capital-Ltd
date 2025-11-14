@@ -11,7 +11,7 @@ interface CardData {
   imgWidth: number;
   imgHeight: number;
   title: string;
-  desc: string;
+  desc: string[]; // Array of paragraphs
   icon?: ReactNode; // Optional, any valid React node
   // [key: string]: any; // Allow extra dynamic props (e.g., for future extensions)
 }
@@ -21,14 +21,14 @@ const CARD_DATA: CardData[] = [
     imgWidth: 189,
     imgHeight: 150,
     title: "Wave AgriVentures",
-    desc: "Advancing agri-processing and food value networks through structured investment and strategic partnerships across India and Africa.",
+    desc: ["Advancing agri-processing and food value networks through structured investment and strategic partnerships across India and Africa."],
   },
   {
     imgSrc: "/images/wave-capital logo-2.png",
     imgWidth: 148,
     imgHeight: 150,
     title: "Wave Talent Solutions",
-    desc: "Delivering recruitment and workforce programs that strengthen enterprise capability and compliance in fast-growing business environments.",
+    desc: ["Delivering recruitment and workforce programs that strengthen enterprise capability and compliance in fast-growing business environments."],
   },
 ];
 
@@ -40,7 +40,7 @@ const SECTION_DATA: { title: string; secdesc: string } = {
 
 type CMSCard = {
   title?: string
-  desc?: string
+  desc?: Array<{ paragraph: string }>
   imageUpload?: Media | number | null
   imgWidth?: number
   imgHeight?: number
@@ -60,9 +60,12 @@ export default function WaveGroup(props: WaveGroupProps) {
     ? props.cards.map((c, idx) => {
         const uploaded = c.imageUpload && typeof c.imageUpload === 'object' ? c.imageUpload : null
         const imgUrl = uploaded && 'url' in uploaded && uploaded.url ? uploaded.url : CARD_DATA[idx]?.imgSrc
+        const descArray = c.desc && Array.isArray(c.desc) && c.desc.length > 0
+          ? c.desc.map(d => d.paragraph).filter(Boolean)
+          : CARD_DATA[idx]?.desc ?? []
         return {
           title: c.title ?? CARD_DATA[idx]?.title ?? '',
-          desc: c.desc ?? CARD_DATA[idx]?.desc ?? '',
+          desc: descArray,
           imgSrc: imgUrl,
           imgWidth: c.imgWidth ?? CARD_DATA[idx]?.imgWidth ?? 160,
           imgHeight: c.imgHeight ?? CARD_DATA[idx]?.imgHeight ?? 150,
@@ -86,7 +89,7 @@ export default function WaveGroup(props: WaveGroupProps) {
           </Typography>
         </div>
 
-        <div className="grid grid-cols-12 gap-5 lg:gap-8 max-w-5xl mx-auto xl:px-8 pb-2">
+        <div className="grid grid-cols-12 gap-4 lg:gap-6 xl:px-8 pb-2">
           {/* Left column cards */}
 
           {/* {CARD_DATA.slice(0, 2).map((card, index) => ( */}
@@ -114,9 +117,11 @@ export default function WaveGroup(props: WaveGroupProps) {
               </CardHeader>
 
               <CardContent className="flex-1 p-0 mb-4">
-                <Typography variant="p" className="text-midgray leading-snug text-center">
-                  {card.desc}
-                </Typography>
+                {card.desc.map((paragraph, pIdx) => (
+                  <Typography key={pIdx} variant="p" className="text-midgray leading-snug text-center last:mb-0 mb-3">
+                    {paragraph}
+                  </Typography>
+                ))}
               </CardContent>
             </Card>
           ))}

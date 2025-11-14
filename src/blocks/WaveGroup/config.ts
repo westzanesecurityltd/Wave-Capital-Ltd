@@ -41,8 +41,24 @@ export const WaveGroup: Block = {
         {
           name: 'desc',
           label: 'Description',
-          type: 'textarea',
-          required: true,
+          type: 'array',
+          minRows: 0,
+          maxRows: 3,
+          admin: {
+            initCollapsed: true,
+          },
+          labels: {
+            singular: 'Paragraph',
+            plural: 'Paragraphs',
+          },
+          fields: [
+            {
+              name: 'paragraph',
+              label: 'Paragraph',
+              type: 'textarea',
+              required: true,
+            },
+          ],
         },
         {
           name: 'imageUpload',

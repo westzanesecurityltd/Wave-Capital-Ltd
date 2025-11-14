@@ -5,7 +5,7 @@ import MapPinIcon from "@/components/Icons/MapPinIcon";
 import PhoneIcon from "@/components/Icons/PhoneIcon";
 import TwitterxIcon from "@/components/Icons/TwitterxIcon";
 import YoutubeIcon from "@/components/Icons/YoutubeIcon";
-import { CMSLink } from "@/components/Link";
+import { FooterLinks } from "./FooterLinks";
 import type { Footer } from "@/payload-types";
 import { getCachedGlobal } from "@/utilities/getGlobals";
 import Image from "next/image";
@@ -91,17 +91,7 @@ export async function Footer() {
                 <h4 className="text-xl font-semibold text-primarys leading-relaxed whitespace-nowrap mb-3">
                   {col.title}
                 </h4>
-                <ul className="space-y-3">
-                  {col.links?.map((link, j) => (
-                    <li key={j}>
-                      <CMSLink
-                        {...link}
-                        appearance="inline"
-                        className="text-base lg:text-base xl:text-base text-midgray leading-relaxed whitespace-nowrap hover:text-black transition-colors font-medium"
-                      />
-                    </li>
-                  ))}
-                </ul>
+                <FooterLinks links={col.links || []} className="space-y-3" />
               {col.title == 'Social Media' && 
                 <div className="flex items-center gap-5">
               {footerData?.facebook &&
