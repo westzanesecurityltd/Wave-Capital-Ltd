@@ -1,4 +1,35 @@
-import type { Block } from 'payload'
+import type { Block, FieldHook } from 'payload'
+import { randomUUID } from 'crypto'
+
+const ensureCardIds: FieldHook = ({ value }) => {
+  if (!Array.isArray(value)) return value
+  return value.map((card: Record<string, unknown> = {}) => {
+    const desc = Array.isArray(card?.desc)
+      ? card.desc.map((paragraph: unknown) => {
+          const normalized =
+            paragraph && typeof paragraph === 'object'
+              ? (paragraph as Record<string, unknown>)
+              : { paragraph }
+
+          return {
+            ...normalized,
+            paragraph:
+              typeof normalized.paragraph === 'string' ? normalized.paragraph : '',
+            id:
+              typeof normalized.id === 'string' && normalized.id.length > 0
+                ? normalized.id
+                : randomUUID(),
+          }
+        })
+      : card?.desc
+
+    return {
+      ...card,
+      id: typeof card?.id === 'string' && card.id.length > 0 ? card.id : randomUUID(),
+      desc,
+    }
+  })
+}
 
 export const WaveGroup: Block = {
   slug: 'waveGroup',
@@ -31,6 +62,9 @@ export const WaveGroup: Block = {
         plural: 'Cards',
       },
       maxRows: 4,
+      hooks: {
+        beforeValidate: [ensureCardIds],
+      },
       fields: [
         {
           name: 'title',
